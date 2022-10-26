@@ -131,7 +131,7 @@ class COCOeval:
             p.iouType = 'segm' if p.useSegm == 1 else 'bbox'
             print('useSegm (deprecated) is not None. Running {} evaluation'.format(p.iouType))
         print('Evaluate annotation type *{}*'.format(p.iouType))
-        p.imgIds = list(np.unique(p.imgIds))
+        p.imgIds = list(np.unique(p.imgIds))    # np.unique(): 返回一个由小到大排序无元素重复的元组或列表
         if p.useCats:
             p.catIds = list(np.unique(p.catIds))
         p.maxDets = sorted(p.maxDets)
@@ -244,7 +244,7 @@ class COCOeval:
         else:
             gt = [_ for cId in p.catIds for _ in self._gts[imgId,cId]]
             dt = [_ for cId in p.catIds for _ in self._dts[imgId,cId]]
-        if len(gt) == 0 and len(dt) ==0:
+        if len(gt) == 0 and len(dt) == 0:
             return None
 
         for g in gt:
@@ -326,11 +326,11 @@ class COCOeval:
         if p is None:
             p = self.params
         p.catIds = p.catIds if p.useCats == 1 else [-1]
-        T           = len(p.iouThrs)
-        R           = len(p.recThrs)
-        K           = len(p.catIds) if p.useCats else 1
-        A           = len(p.areaRng)
-        M           = len(p.maxDets)
+        T           = len(p.iouThrs)    # 表示 COCO 计算时采用的 10 个 IoU 值 从 0.5 到 0.95 每间隔 0.05 取一个值
+        R           = len(p.recThrs)    # 表示 COCO 计算时采用的每一个概率阈值 从 0 到 1 每间隔 0.01 取一个值 共 101 个阈值
+        K           = len(p.catIds) if p.useCats else 1    # 表示检测任务中检测的目标类别数
+        A           = len(p.areaRng)    # 表示检测任务中针对的目标尺度类型 (1.没有限制 2.小目标-area<32^2 3.中等目标-32^2<area<96^2 4.大目标-area>96^2)
+        M           = len(p.maxDets)    # 每张图像最大检测目标个数 (1 10 100)
         precision   = -np.ones((T,R,K,A,M)) # -1 for the precision of absent categories
         recall      = -np.ones((T,K,A,M))
         scores      = -np.ones((T,R,K,A,M))

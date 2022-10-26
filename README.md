@@ -37,6 +37,8 @@ license{
 }
 ```
 
+
+
 ### 1. Object Detection
 
 ```json
@@ -59,10 +61,29 @@ categories[{
 
 
 
+## 预测结果文件格式
+
+### 1. Object Detection
+
+```json
+[{
+	"image_id": int, 
+    "category_id": int, 
+    "bbox": [x,y,width,height], 
+    "score": float,
+}]
+```
+
+### 2. Detection with Object Segments
+
+```json
+[{
+	"image_id": int, 
+    "category_id": int, 
+    "segmentation": RLE, 
+    "score": float,
+}]
+```
 
 
-COCO 
 
-COCO.getCatIds()
-
-COCO.loadCats(ids)

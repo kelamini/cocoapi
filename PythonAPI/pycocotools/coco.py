@@ -223,8 +223,8 @@ class COCO:
     def loadImgs(self, ids=[]):
         """
         Load anns with the specified ids.
-        :param ids (int array)       : integer ids specifying img
-        :return: imgs (object array) : loaded img objects
+        :param ids (int array)       : integer ids specifying img --> image_id
+        :return: imgs (object array) : loaded img objects --> 返回一个列表
         """
         if _isArrayLike(ids):
             return [self.imgs[id] for id in ids]
