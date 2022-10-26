@@ -157,10 +157,10 @@ class COCO:
     def getCatIds(self, catNms=[], supNms=[], catIds=[]):
         """
         filtering parameters. default skips that filter.
-        :param catNms (str array)  : get cats for given cat names
-        :param supNms (str array)  : get cats for given supercategory names
-        :param catIds (int array)  : get cats for given cat ids
-        :return: ids (int array)   : integer array of cat ids
+        :param catNms (str array)  : get cats for given cat names --> 类别名称
+        :param supNms (str array)  : get cats for given supercategory names --> supercategory
+        :param catIds (int array)  : get cats for given cat ids --> 类别的 ID
+        :return: ids (int array)   : integer array of cat ids -> 类别的 ID
         """
         catNms = catNms if _isArrayLike(catNms) else [catNms]
         supNms = supNms if _isArrayLike(supNms) else [supNms]
@@ -211,8 +211,9 @@ class COCO:
     def loadCats(self, ids=[]):
         """
         Load cats with the specified ids.
-        :param ids (int array)       : integer ids specifying cats
-        :return: cats (object array) : loaded cat objects
+        获取指定 ID 的 类别名称
+        :param ids (int array)       : integer ids specifying cats --> 类别的 ID
+        :return: cats (object array) : loaded cat objects --> ID 对应的类别对象
         """
         if _isArrayLike(ids):
             return [self.cats[id] for id in ids]
