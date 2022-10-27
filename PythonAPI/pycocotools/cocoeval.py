@@ -128,7 +128,7 @@ class COCOeval:
         p = self.params
         # add backward compatibility if useSegm is specified in params
         if not p.useSegm is None:
-            p.iouType = 'segm' if p.useSegm == 1 else 'bbox'
+            p.iouType = 'segm' if p.useSegm == 1 else 'bbox'    # 确定计算 iou 的类型: segm or bbox
             print('useSegm (deprecated) is not None. Running {} evaluation'.format(p.iouType))
         print('Evaluate annotation type *{}*'.format(p.iouType))
         p.imgIds = list(np.unique(p.imgIds))    # np.unique(): 返回一个由小到大排序无元素重复的元组或列表
@@ -168,7 +168,7 @@ class COCOeval:
         else:
             gt = [_ for cId in p.catIds for _ in self._gts[imgId,cId]]
             dt = [_ for cId in p.catIds for _ in self._dts[imgId,cId]]
-        if len(gt) == 0 and len(dt) ==0:
+        if len(gt) == 0 and len(dt) == 0:
             return []
         inds = np.argsort([-d['score'] for d in dt], kind='mergesort')
         dt = [dt[i] for i in inds]
