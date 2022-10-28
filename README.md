@@ -203,8 +203,6 @@ categories[{
 
 
 
-
-
 ### Params 类
 
 #### setDetParams() 函数
@@ -214,7 +212,7 @@ categories[{
 - self.imgIds：[]	# image 的 ID 号
 - self.catIds：[]     # categorie 的 ID 号
 - self.iouThrs：[0.5, 0.55, ..., 0.95]    # IoU 的阈值，范围为 [0.5, 0.95]，间隔为 0.05
-- self.recThrs：[0, 0.01, ..., 1]
+- self.recThrs：[0, 0.01, ..., 1]    # 召回率的阈值
 - self.maxDets：[1, 10, 100]    # 最大的检测数量
 - self.areaRng：[[0 ** 2, 1e5 ** 2], [0 ** 2, 32 ** 2], [32 ** 2, 96 ** 2], [96 ** 2, 1e5 ** 2]]    # 面积的范围
 - self.areaRngLbl：['all', 'small', 'medium', 'large']    # 面积范围的标签
@@ -233,3 +231,4 @@ categories[{
 - self.areaRngLbl：['all', 'medium', 'large']    # 面积范围的标签
 - self.useCats：1    # 是否使用 categorie 的 ID 号
 - self.kpt_oks_sigmas：[.26, .25, .25, .35, .35, .79, .79, .72, .72, .62,.62, 1.07, 1.07, .87, .87, .89, .89]/10.0
+
